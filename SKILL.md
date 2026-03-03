@@ -1,7 +1,7 @@
 ---
 name: derp-defender
 description: >
-  Use when any prompt is vague, underspecified, or ambiguous. Intercepts brain dumps, voice-to-text rambles, screenshots of notes, and ADHD-pattern inputs (rapid-fire ideas, context-switching, enthusiasm without specificity) then runs structured interrogation to produce precision-engineered prompts for the executing agent. Triggers on: "derp defender," "defend this," "help me figure out what I need," prompts with fewer than 2 specs, or tasks interpretable 3+ ways. Auto-skips well-formed prompts. Do NOT trigger on precise single-action commands or when user says "just do it" or "skip the defender."
+  Use when any prompt is vague, underspecified, or ambiguous. Intercepts brain dumps, voice-to-text rambles, screenshots of notes, and ADHD-pattern inputs (rapid-fire ideas, context-switching, enthusiasm without specificity) then runs structured interrogation to produce precision-engineered prompts for the executing agent. Triggers on: "derp defender," "DERP this," "help me figure out what I need," prompts with fewer than 2 specs, or tasks interpretable 3+ ways. Auto-skips well-formed prompts. Do NOT trigger on precise single-action commands or when user says "just do it" or "skip DERP."
 ---
 
 > **Plan mode. Make No Mistakes. Ask questions before executing.**
@@ -19,13 +19,13 @@ description: >
 - Partially formed ideas that have energy but lack specificity
 - When another agent requests clarification before executing
 - When the orchestrating agent detects an input that could be interpreted multiple ways
-- When the user explicitly invokes: "defend this," "derp defender," or "help me say what I mean"
+- When the user explicitly invokes: "DERP this," "derp defender," or "help me say what I mean"
 
 ## When NOT to Use
 
 - Prompts that already specify: what, who, why, deliverable format, and success criteria
 - Single-action commands: "commit to main," "run the tests," "send the email"
-- When the user says "just do it," "skip the defender," or "I know what I want"
+- When the user says "just do it," "skip DERP," or "I know what I want"
 - Mid-execution clarification (use normal follow-up questions instead)
 - Conversational chat with no task intent
 
@@ -70,8 +70,8 @@ For an ADHD operator, this is especially destructive. The re-work loop — "that
 The skill is inspired by three principles from Anthropic's prompt engineering research:
 
 1. **Context is a finite resource with diminishing returns.** Every token matters. A well-crafted prompt maximizes signal density in the context window. (Source: Anthropic, "Effective Context Engineering for AI Agents")
-2. **The right altitude.** Prompts fail at two extremes — too vague (the agent guesses wrong) or too rigid (brittle, breaks on edge cases). The defender finds the Goldilocks zone: specific enough to guide behavior, flexible enough to allow intelligent execution. (Source: Anthropic, "Prompting Best Practices")
-3. **Show, don't just tell.** The best prompts include examples of desired output, not just descriptions. The defender extracts examples from the user when they exist, even implicitly. (Source: Anthropic, "Prompt Engineering Overview")
+2. **The right altitude.** Prompts fail at two extremes — too vague (the agent guesses wrong) or too rigid (brittle, breaks on edge cases). DERP Defender finds the Goldilocks zone: specific enough to guide behavior, flexible enough to allow intelligent execution. (Source: Anthropic, "Prompting Best Practices")
+3. **Show, don't just tell.** The best prompts include examples of desired output, not just descriptions. DERP Defender extracts examples from the user when they exist, even implicitly. (Source: Anthropic, "Prompt Engineering Overview")
 
 ---
 
@@ -88,7 +88,7 @@ Before asking a single question, assess the incoming prompt:
 - Context/background sufficient for execution
 - Format or structure specification
 
-If yes → Skip the defender. Say: *"This prompt is already well-specified. Proceeding to [agent/execution]."*
+If yes → Skip DERP Defender. Say: *"This prompt is already well-specified. Proceeding to [agent/execution]."*
 
 If no → Proceed. But first, set the depth:
 
@@ -121,7 +121,7 @@ The goal of Step 1 is to reduce the intent to a single sentence: **"I need [deli
 
 ### Step 2: Fill the Gaps (Depth-Dependent)
 
-Use the Prompt Anatomy Framework to identify what's missing. The framework has 7 layers — not all are needed for every prompt, but the defender checks each one:
+Use the Prompt Anatomy Framework to identify what's missing. The framework has 7 layers — not all are needed for every prompt, but DERP Defender checks each one:
 
 #### The 7 Layers (Check Against Every Prompt)
 
@@ -152,10 +152,10 @@ Questions must be ADHD-friendly:
 
 #### ADHD Momentum Protection
 
-The defender must never become a chore. If you detect:
+DERP Defender must never become a chore. If you detect:
 - User giving one-word answers → compress remaining questions, propose defaults
 - User saying "just go" or "good enough" → respect it, proceed with what you have
-- User adding NEW ideas mid-defend → capture them as follow-up tasks, don't derail the current defend
+- User adding NEW ideas mid-DERP → capture them as follow-up tasks, don't derail the current DERP
 - Energy dropping → summarize what you have, ask "should I proceed with this or do you want to add more?"
 
 ### Step 3: Assemble the Refined Prompt
@@ -190,20 +190,20 @@ Plan mode. Make no mistakes. Ask questions before executing.
 
 **Critical rules:**
 
-1. **Every refined prompt MUST begin with:** `Plan mode. Make no mistakes. Ask questions before executing.` — This is non-negotiable. It ensures the executing agent inherits the same discipline that the defender applied. Without this prefix, agents default to eager execution and guess wrong.
+1. **Every refined prompt MUST begin with:** `Plan mode. Make no mistakes. Ask questions before executing.` — This is non-negotiable. It ensures the executing agent inherits the same discipline that DERP Defender applied. Without this prefix, agents default to eager execution and guess wrong.
 
-2. The defenderd prompt must be **self-contained.** An agent reading it should need ZERO additional context to execute. If context from the defender conversation is needed, it gets embedded in the prompt — not left implicit.
+2. The DERP Defended prompt must be **self-contained.** An agent reading it should need ZERO additional context to execute. If context from the DERP Defender conversation is needed, it gets embedded in the prompt — not left implicit.
 
 ### Step 4: Present, Edit, Dispatch
 
-1. **Present the defenderd prompt** to the user in full
+1. **Present the DERP Defended prompt** to the user in full
 2. **Explicitly ask:** *"Want to edit anything before I send this to [agent]?"*
 3. **Wait for approval.** Options:
    - "Send it" → dispatch to the identified agent
    - "Change [X]" → edit and re-present
-   - "Let me rewrite it" → user takes over, defender complete
+   - "Let me rewrite it" → user takes over, DERP complete
    - "Save for later" → store as a task/note, don't dispatch
-4. **On dispatch:** Hand the defenderd prompt to the executing agent with the defender metadata attached:
+4. **On dispatch:** Hand the DERP Defended prompt to the executing agent with the DERP Defender metadata attached:
    ```
    [REFINED PROMPT — Depth: mid DERP | Layers covered: 1-5,7 | Refined from: brain dump]
    ```
@@ -212,26 +212,26 @@ Plan mode. Make no mistakes. Ask questions before executing.
 
 ---
 
-## Anti-Patterns (What the Defend Must Never Do)
+## Anti-Patterns (What DERP Defender Must Never Do)
 
 | Anti-Pattern | Why It's Deadly | Instead |
 |---|---|---|
 | Ask 10 questions before doing anything | ADHD brain abandons the task | Start with 2-3, propose defaults for the rest |
-| Rewrite the user's intent | The user's intent is sacred; the defender refines expression, not meaning | Reflect back: "So you want [X]?" before rewriting |
-| Add scope the user didn't ask for | Scope creep disguised as thoroughness | Defend ONLY what was asked. Note expansions as "optional additions" |
-| Use the defender on already-clear prompts | Wastes time, feels patronizing | Auto-skip check (Step 0) catches this |
+| Rewrite the user's intent | The user's intent is sacred; DERP Defender refines expression, not meaning | Reflect back: "So you want [X]?" before rewriting |
+| Add scope the user didn't ask for | Scope creep disguised as thoroughness | DERP ONLY what was asked. Note expansions as "optional additions" |
+| Use DERP Defender on already-clear prompts | Wastes time, feels patronizing | Auto-skip check (Step 0) catches this |
 | Produce a refined prompt longer than 500 words | Bloated prompts degrade agent performance (context rot) | Aim for 150-300 words. Exceed only for alpha DERP sessions on complex tasks |
 | Stall when the user says "I don't know" | Momentum killer | Propose a reasonable default: "I'll assume [X] unless you say otherwise" |
-| Lose the user's energy/enthusiasm | The defender should feel like acceleration, not bureaucracy | Match the user's energy. If they're excited, move fast. |
+| Lose the user's energy/enthusiasm | DERP Defender should feel like acceleration, not bureaucracy | Match the user's energy. If they're excited, move fast. |
 
 ---
 
 ## Invocation Patterns
 
-The defender can be triggered explicitly or implicitly:
+DERP Defender can be triggered explicitly or implicitly:
 
 **Explicit triggers (user says):**
-- "Defend this"
+- "DERP this"
 - "Derp defender"
 - "Help me figure out what I need"
 - "What should I actually be asking for?"
@@ -246,9 +246,9 @@ The defender can be triggered explicitly or implicitly:
 - Orchestrating agent receives input that would require guessing to execute
 
 **Depth overrides:**
-- "baby DERP" or "defend baby" → baby DERP depth
-- "mid DERP" or "defend mid" → mid DERP depth
-- "alpha DERP" or "defend alpha" → alpha DERP depth
+- "baby DERP" or "DERP baby" → baby DERP depth
+- "mid DERP" or "DERP mid" → mid DERP depth
+- "alpha DERP" or "DERP alpha" → alpha DERP depth
 - No modifier → auto-detect
 
 ---
@@ -256,32 +256,32 @@ The defender can be triggered explicitly or implicitly:
 ## Cross-Environment Notes
 
 ### Claude.ai (Chat)
-- The defender runs as a conversational skill. Use ask_user_input tool for bounded questions.
-- Present the defenderd prompt in a code block for easy copy/paste.
-- Offer to dispatch by continuing the conversation with the defenderd prompt.
+- DERP Defender runs as a conversational skill. Use ask_user_input tool for bounded questions.
+- Present the DERP Defended prompt in a code block for easy copy/paste.
+- Offer to dispatch by continuing the conversation with the DERP Defended prompt.
 
 ### Cowork
-- The orchestrating agent can auto-trigger the defender on ambiguous inputs.
-- The defender can dispatch to subagents directly after approval.
+- The orchestrating agent can auto-trigger DERP Defender on ambiguous inputs.
+- DERP Defender can dispatch to subagents directly after approval.
 - Refined prompts should include full context for stateless subagent sessions.
 
 ### Claude Code
-- The defender writes the refined prompt to a file if requested.
+- DERP Defender writes the refined prompt to a file if requested.
 - For Git/deployment tasks: always route to Claude Code per user preference.
 - Keep refined prompts terse — Claude Code works best with precise, action-oriented instructions.
 
 ---
 
-## Verification Checklist (Post-Defend)
+## Verification Checklist (Post-DERP)
 
-Before presenting the defenderd prompt, verify:
+Before presenting the DERP Defended prompt, verify:
 
 - [ ] **Self-contained:** Could an agent with no conversation history execute this?
 - [ ] **One clear deliverable:** Not a compound task disguised as one prompt
 - [ ] **Right agent identified:** The executing agent is named and appropriate
 - [ ] **No fabricated context:** Everything in the prompt came from the user or verified knowledge
 - [ ] **ADHD-friendly length:** baby DERP ≤100 words, mid DERP ≤250 words, alpha DERP ≤400 words
-- [ ] **User's intent preserved:** The defender refined expression, not meaning
+- [ ] **User's intent preserved:** DERP Defender refined expression, not meaning
 
 ---
 
@@ -291,7 +291,7 @@ Before presenting the defenderd prompt, verify:
 
 **Input:** "i need to do something with the user onboarding"
 
-**Defend conversation:**
+**DERP conversation:**
 > This feels like a **mid DERP** — "user onboarding" could mean several things. Say "baby DERP" to speed up.
 >
 > What's the ONE deliverable? [Options: Fix a bug in onboarding flow / Write copy for onboarding screens / Design a new onboarding sequence / Something else]
@@ -331,7 +331,7 @@ Before presenting the defenderd prompt, verify:
 
 **Input:** "so I was thinking about the um the IP stuff and whether we should like maybe do something with the new vertical because the team mentioned that the data model might work there too and also I need to update the budget tracker but that's separate I think"
 
-**Defend conversation:**
+**DERP conversation:**
 > I hear three threads here:
 > 1. IP strategy for the new vertical
 > 2. Data model compatibility (team's input)
@@ -347,7 +347,7 @@ Before presenting the defenderd prompt, verify:
 
 **Input:** "Create a Word document comparing Provider A's fee schedule at 60/90/180 days against Provider B's schedule. Use the data from the internal rate sheet. Format as a side-by-side table with columns for day threshold, fee amount, and policy source. Save to outputs."
 
-**Defend response:**
+**DERP response:**
 > This prompt is already well-specified — deliverable, data source, format, and output location are all clear. Proceeding to execution.
 
 ---
@@ -358,7 +358,7 @@ Apply this skill whenever:
 - Receiving a vague, ambiguous, or underspecified prompt from any source
 - An ADHD-pattern input is detected (rapid-fire, enthusiasm without specificity)
 - Another agent requests clarification before executing
-- The user explicitly invokes the defender
+- The user explicitly invokes DERP Defender
 - The orchestrating agent would otherwise have to guess what the user means
 - Voice-to-text or screenshot input needs translation to structured instructions
 - A task could be interpreted 3+ different ways and getting it wrong wastes a full session
