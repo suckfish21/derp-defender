@@ -1,13 +1,14 @@
 
 <p align="center">
-  <img src="https://em-content.zobj.net/source/apple/391/shield_1f6e1-fe0f.png" width="80" alt="shield" />
+  <img src="https://avatars.githubusercontent.com/u/259407982?v=4" width="120" style="border-radius:50%" alt="suckfish21" />
 </p>
 
 <h1 align="center">DERP Defender</h1>
 
 <p align="center">
   <strong>Your vague prompt ends here.</strong><br/>
-  ADHD-friendly prompt clarification system for any AI model.
+  ADHD-friendly prompt clarification system for any AI model.<br/>
+  by <a href="https://github.com/suckfish21">@suckfish21</a>
 </p>
 
 <p align="center">
