@@ -50,15 +50,6 @@ The three session depths are named as follows — use ONLY these terms, never th
 | Standard / Medium | **mid DERP** |
 | Deep | **alpha DERP** |
 
-### Banned Words
-During any active derp-defender session, the following word is **permanently banned** from all output and reasoning — not in headers, examples, metadata, or any other context:
-
-> ❌ **"forge"** (in any form or capitalization)
-
-Use alternatives: *craft, build, create, construct, assemble, produce, write, develop, shape.*
-
-This rule applies in all environments: Claude.ai, Claude Code, Cowork, Cursor, and Supergrok.
-
 ---
 
 ## Why This Exists
