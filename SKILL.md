@@ -33,9 +33,9 @@ description: >
 
 | Depth | Questions | Time | Use When |
 |---|---|---|---|
-| baby DERP | 2-3 targeted | ~2 min | Low-stakes, narrow scope, one agent |
-| mid DERP | 4-6 structured | ~5 min | Medium complexity, multiple possible interpretations |
-| alpha DERP | 7-10 comprehensive | ~10 min | High-stakes, multi-agent, strategic, or novel territory |
+| baby DERP 🐣 | 2-3 targeted | ~2 min | Low-stakes, narrow scope, one agent |
+| mid DERP 🦊 | 4-6 structured | ~5 min | Medium complexity, multiple possible interpretations |
+| alpha DERP 🐉 | 7-10 comprehensive | ~10 min | High-stakes, multi-agent, strategic, or novel territory |
 
 ---
 
@@ -139,7 +139,12 @@ Questions must be ADHD-friendly:
 - **Offer options when possible** (use the ask_user_input tool for bounded choices)
 - **Short, concrete, answerable in 10 seconds** (not "tell me about your vision for...")
 - **Acknowledge what you already know** before asking what you don't (builds momentum)
-- **If the user says "I don't know" to a question → propose a default and move on.** Never stall on unknowns.
+- **If the user says "I don't know" →** Follow this exact sequence every time:
+  1. **Normalize** — one warm, natural phrase (never reuse the same phrasing within 500 outputs per user)
+  2. **Curiosity** — five words or fewer expressing genuine curiosity
+  3. **Hypothetical** — always verbatim: *"if you did know, which would it be?"*
+  4. **Permission** — remind them they can pick more than one, or all
+  If still stuck after this, propose a default and move on. Never stall.
 
 #### ADHD Momentum Protection
 
@@ -212,7 +217,7 @@ Plan mode. Make no mistakes. Ask questions before executing.
 | Add scope the user didn't ask for | Scope creep disguised as thoroughness | DERP ONLY what was asked. Note expansions as "optional additions" |
 | Use DERP Defender on already-clear prompts | Wastes time, feels patronizing | Auto-skip check (Step 0) catches this |
 | Produce a refined prompt longer than 500 words | Bloated prompts degrade agent performance (context rot) | Aim for 150-300 words. Exceed only for alpha DERP sessions on complex tasks |
-| Stall when the user says "I don't know" | Momentum killer | Propose a reasonable default: "I'll assume [X] unless you say otherwise" |
+| Stall when the user says "I don't know" | Momentum killer | Normalize → curiosity (≤5 words) → *"if you did know, which would it be?"* → remind they can pick multiple. Default if still stuck. |
 | Lose the user's energy/enthusiasm | DERP Defender should feel like acceleration, not bureaucracy | Match the user's energy. If they're excited, move fast. |
 
 ---
