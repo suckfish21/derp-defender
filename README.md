@@ -1,44 +1,138 @@
-# DERP Defender
 
-**ADHD-friendly prompt clarification system.** Intercepts vague inputs — brain dumps, voice-to-text rambles, half-baked ideas — and produces precision-engineered prompts through structured interrogation.
+<p align="center">
+  <img src="https://em-content.zobj.net/source/apple/391/shield_1f6e1-fe0f.png" width="80" alt="shield" />
+</p>
 
-Works with **Claude, ChatGPT, Grok, Gemini, and open-source models.**
+<h1 align="center">DERP Defender</h1>
+
+<p align="center">
+  <strong>Your vague prompt ends here.</strong><br/>
+  ADHD-friendly prompt clarification system for any AI model.
+</p>
+
+<p align="center">
+  <a href="#setup-by-platform"><img src="https://img.shields.io/badge/Claude-Works-blueviolet?style=flat-square&logo=anthropic" alt="Claude" /></a>
+  <a href="#chatgpt"><img src="https://img.shields.io/badge/ChatGPT-Works-green?style=flat-square&logo=openai" alt="ChatGPT" /></a>
+  <a href="#grok"><img src="https://img.shields.io/badge/Grok-Works-black?style=flat-square&logo=x" alt="Grok" /></a>
+  <a href="#google-gemini-gems"><img src="https://img.shields.io/badge/Gemini-Works-blue?style=flat-square&logo=google" alt="Gemini" /></a>
+  <a href="#open-source-models-llama-mistral-etc"><img src="https://img.shields.io/badge/Open_Source-Works-orange?style=flat-square&logo=meta" alt="Open Source" /></a>
+  <img src="https://img.shields.io/badge/license-MIT-gray?style=flat-square" alt="MIT License" />
+</p>
 
 ---
 
-## What It Does
+## The Problem
 
-Most AI failures aren't model failures — they're **input failures.** A vague prompt produces a confidently wrong result that wastes your session and requires re-work.
+```
+  You                          The AI
+  ┌─────────────┐              ┌─────────────────────────┐
+  │ "do something│    ───►     │ *confidently produces    │
+  │  with the    │             │  the wrong thing for     │
+  │  onboarding" │             │  45 minutes*             │
+  └─────────────┘              └─────────────────────────┘
+                    😐 → 😤 → 🔄 → 😩
 
-DERP Defender front-loads 3-5 minutes of clarification to save 30-60 minutes of correction:
+  You                          DERP Defender              The AI
+  ┌─────────────┐              ┌───────────────┐          ┌──────────────────┐
+  │ "do something│    ───►     │ 3-5 targeted  │   ───►   │ *nails it on the │
+  │  with the    │             │ questions     │          │  first try*      │
+  │  onboarding" │             │ (~3 min)      │          │                  │
+  └─────────────┘              └───────────────┘          └──────────────────┘
+                    😐 → 🤔 → 💡 → 🎯
+```
 
-1. **Detects** vague, ambiguous, or underspecified prompts (auto-skips clear ones)
-2. **Calibrates** depth — baby DERP (2-3 Qs), mid DERP (4-6), alpha DERP (7-10)
-3. **Interrogates** using a 7-layer framework (Identity, Context, Task, Constraints, Format, Examples, Verification)
-4. **Assembles** a self-contained, precision prompt ready for any agent or model
-5. **Protects momentum** — ADHD-friendly by design: one question at a time, options over open-ended questions, defaults when you're stuck
+Most AI failures aren't model failures — they're **input failures.** DERP Defender front-loads 3-5 minutes of clarification to save 30-60 minutes of correction.
+
+---
+
+## How It Works
+
+```
+                    ┌─────────────────────────────┐
+                    │      YOUR MESSY INPUT        │
+                    │  "i need to do the thing"    │
+                    └──────────────┬──────────────┘
+                                   │
+                          ┌────────▼────────┐
+                          │  STEP 0: DETECT  │
+                          │  Already clear?  │
+                          └────────┬────────┘
+                            ┌──────┴──────┐
+                          YES             NO
+                            │              │
+                     ┌──────▼──────┐  ┌───▼───────────┐
+                     │  Auto-skip  │  │ STEP 1: DEPTH │
+                     │  proceed ►  │  │ baby/mid/alpha│
+                     └─────────────┘  └───┬───────────┘
+                                          │
+                               ┌──────────▼──────────┐
+                               │  STEP 2: 7-LAYER    │
+                               │  INTERROGATION      │
+                               │                     │
+                               │  1. Identity     ◄──┤
+                               │  2. Context      ◄──┤
+                               │  3. Task         ◄──┤
+                               │  4. Constraints  ◄──┤
+                               │  5. Format       ◄──┤
+                               │  6. Examples     ◄──┤
+                               │  7. Verification ◄──┤
+                               └──────────┬──────────┘
+                                          │
+                               ┌──────────▼──────────┐
+                               │  STEP 3: ASSEMBLE   │
+                               │  precision prompt    │
+                               └──────────┬──────────┘
+                                          │
+                               ┌──────────▼──────────┐
+                               │  STEP 4: APPROVE    │
+                               │  edit / send / save  │
+                               └──────────┬──────────┘
+                                          │
+                                          ▼
+                               ┌─────────────────────┐
+                               │  🎯 DERP DEFENDED   │
+                               │  PROMPT → AGENT     │
+                               └─────────────────────┘
+```
+
+---
+
+## Depth Levels
+
+```
+  baby DERP 🐣          mid DERP 🦊            alpha DERP 🐉
+  ─────────────         ─────────────          ─────────────
+  2-3 questions         4-6 questions          7-10 questions
+  ~2 minutes            ~5 minutes             ~10 minutes
+  Low stakes            Medium complexity       High stakes
+  Single task           Multi-interpretation    Strategic/novel
+```
+
+Override with: `"baby DERP"`, `"mid DERP"`, or `"alpha DERP"` when invoking.
 
 ---
 
 ## The 7-Layer Framework
 
-Every prompt is checked against these layers. Depth level determines how many get asked vs. inferred:
+```
+  Layer          Question It Answers         🐣    🦊    🐉
+  ────────────── ─────────────────────────── ───── ───── ─────
+  1. Identity    Who executes this?          Ask   Ask   Ask
+  2. Context     What background is needed?  Ask   Ask   Ask
+  3. Task        Concrete deliverable?       Ask   Ask   Ask
+  4. Constraints What boundaries apply?      ~     Ask   Ask
+  5. Format      Output shape/structure?     ~     Ask   Ask
+  6. Examples    What does good look like?   ~     ~     Ask
+  7. Verification How do you know it's done? ~     ~     Ask
 
-| Layer | Question It Answers | baby | mid | alpha |
-|---|---|---|---|---|
-| 1. Identity | Who executes this? | Ask | Ask | Ask |
-| 2. Context | What background is needed? | Ask | Ask | Ask |
-| 3. Task | What's the concrete deliverable? | Ask | Ask | Ask |
-| 4. Constraints | What boundaries apply? | Infer | Ask | Ask |
-| 5. Format | What shape should output take? | Infer | Ask | Ask |
-| 6. Examples | What does good/bad look like? | Infer | Infer | Ask |
-| 7. Verification | How do you know it's done? | Infer | Infer | Ask |
+  Ask = explicitly asked    ~ = inferred from context
+```
 
 ---
 
 ## Setup by Platform
 
-The core system prompt lives in **`SKILL.md`**. Installation varies by platform.
+The core system prompt lives in **`SKILL.md`**. Copy it, paste it, go.
 
 ### Claude Code (CLI)
 
@@ -129,19 +223,49 @@ Always use baby DERP depth (2-3 questions only).
 
 ## Triggers
 
-**Explicit** — say these to activate:
-- `"DERP this"` / `"derp defender"`
-- `"Help me figure out what I need"`
-- `"Make this prompt better"`
-- `"I have an idea but it's messy"`
+```
+  ┌─────────────────────────────────────────────────┐
+  │              SAY ANY OF THESE:                   │
+  │                                                  │
+  │   "DERP this"         "derp defender"            │
+  │   "Make this prompt better"                      │
+  │   "I have an idea but it's messy"                │
+  │   "Help me figure out what I need"               │
+  │                                                  │
+  ├─────────────────────────────────────────────────┤
+  │              OVERRIDE DEPTH:                     │
+  │                                                  │
+  │   "baby DERP"    → 🐣  2-3 Qs, ~2 min          │
+  │   "mid DERP"     → 🦊  4-6 Qs, ~5 min          │
+  │   "alpha DERP"   → 🐉  7-10 Qs, ~10 min        │
+  │                                                  │
+  ├─────────────────────────────────────────────────┤
+  │              SKIP IT:                            │
+  │                                                  │
+  │   "just do it"   "skip DERP"   "I know what     │
+  │                                  I want"         │
+  └─────────────────────────────────────────────────┘
+```
 
-**Override depth:**
-- `"baby DERP"` — 2-3 questions, ~2 min
-- `"mid DERP"` — 4-6 questions, ~5 min
-- `"alpha DERP"` — 7-10 questions, ~10 min
+---
 
-**Skip it:**
-- `"just do it"` / `"skip DERP"` / `"I know what I want"`
+## ADHD Momentum Rules
+
+```
+  ┌──────────────────────────────────────────────────────────┐
+  │                                                          │
+  │  🧠  One question at a time (never stacks 3 in one msg) │
+  │                                                          │
+  │  🎯  Offers options instead of open-ended questions      │
+  │                                                          │
+  │  ⚡  Proposes defaults when you say "I don't know"       │
+  │                                                          │
+  │  🏃  Respects "just go" — proceeds with what it has      │
+  │                                                          │
+  │  🔀  Captures tangents as follow-ups, never derails      │
+  │                                                          │
+  └──────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -179,18 +303,37 @@ If you use multiple AI agents or GPTs, add a routing table:
 
 ---
 
-## ADHD Momentum Rules
+## Before / After
 
-Built into the system prompt. DERP Defender will:
+```
+  BEFORE                              AFTER
+  ──────                              ─────
 
-- Ask **one question at a time** (never stacks 3 in one message)
-- **Offer options** instead of open-ended questions when possible
-- **Propose defaults** when you say "I don't know" (never stalls)
-- **Respect "just go"** — proceeds with what it has
-- **Capture tangents** as follow-up tasks instead of derailing
+  "make the app faster"         →     "Profile the /api/search endpoint,
+                                       identify the top 3 bottlenecks by
+                                       response time, and propose fixes.
+                                       Target: p95 under 200ms."
+
+  "do something with auth"      →     "Add JWT refresh token rotation to
+                                       the login flow. Store refresh tokens
+                                       in HttpOnly cookies. Return 401 with
+                                       a specific error code when expired."
+
+  "help with the landing page"  →     "Rewrite the hero section headline
+                                       and subhead. Audience: technical
+                                       founders. Tone: direct, no hype.
+                                       Include 2 variants for A/B testing."
+```
+
+---
+
+<p align="center">
+  <strong>Stop re-explaining. Start DERPing.</strong><br/><br/>
+  <code>Just say "DERP this" and paste your messy idea.</code>
+</p>
 
 ---
 
 ## License
 
-MIT
+MIT — use it however you want.
