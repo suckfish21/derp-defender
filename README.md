@@ -157,12 +157,14 @@ Invoke with: `"DERP this"`, `"derp defender"`, or `/derp-defender`
 
 1. Go to [chat.openai.com](https://chat.openai.com) → **Explore GPTs** → **Create**
 2. Name: **DERP Defender**
-3. In **Instructions**, paste the contents of `SKILL.md` (skip the YAML frontmatter between the `---` lines at the top)
+3. In **Instructions**, paste the contents of **[`CHATGPT.md`](CHATGPT.md)** (optimized for ChatGPT's 8,000-character limit)
 4. Conversation starters:
    - `"DERP this"`
    - `"I have a messy idea"`
    - `"Make this prompt better"`
 5. Save (private or public)
+
+> **Why CHATGPT.md instead of SKILL.md?** `SKILL.md` is 16K+ characters — over ChatGPT's 8K instruction limit. `CHATGPT.md` preserves the full forge mechanics in ~4,500 characters.
 
 **Option B — Custom Instructions (all chats):**
 
